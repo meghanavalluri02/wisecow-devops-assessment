@@ -37,25 +37,25 @@ jobs:
 
     - name: Show build results
       run: |
-        echo "✅ Docker image built successfully!"
-        echo "📦 Image tags:"
+        echo " Docker image built successfully!"
+        echo " Image tags:"
         echo "   - ${{ secrets.DOCKER_USERNAME }}/wisecow-devops:latest"
         echo "   - ${{ secrets.DOCKER_USERNAME }}/wisecow-devops:${{ github.sha }}"
         if [ "${{ github.event_name }}" != "pull_request" ]; then
-          echo "🚀 Image pushed to Docker Hub!"
+          echo " Image pushed to Docker Hub!"
         else
-          echo "🔍 Pull request - image built but not pushed"
+          echo " Pull request - image built but not pushed"
         fi
 
     - name: Validate Kubernetes manifests (syntax only)
       run: |
-        echo "🔍 Checking Kubernetes manifest syntax..."
+        echo " Checking Kubernetes manifest syntax..."
         if [ -f "deployment.yaml" ]; then
-          echo "✅ deployment.yaml exists"
-          grep -q "apiVersion:" deployment.yaml && echo "✅ deployment.yaml has valid apiVersion" || echo "⚠️ deployment.yaml missing apiVersion"
+          echo " deployment.yaml exists"
+          grep -q "apiVersion:" deployment.yaml && echo " deployment.yaml has valid apiVersion" || echo " deployment.yaml missing apiVersion"
         fi
         if [ -f "service.yaml" ]; then
-          echo "✅ service.yaml exists"
-          grep -q "apiVersion:" service.yaml && echo "✅ service.yaml has valid apiVersion" || echo "⚠️ service.yaml missing apiVersion"
+          echo " service.yaml exists"
+          grep -q "apiVersion:" service.yaml && echo " service.yaml has valid apiVersion" || echo " service.yaml missing apiVersion"
         fi
-        echo "✅ All Kubernetes manifests found and syntactically valid!"
+        echo " All Kubernetes manifests found and syntactically valid!"
