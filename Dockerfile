@@ -1,3 +1,4 @@
+# CI/CD Pipeline Test - $(date)
 FROM ubuntu:22.04
 
 # Install tools
