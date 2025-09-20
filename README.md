@@ -1,7 +1,7 @@
 # 🐄 Wisecow DevOps Assessment
 
 [![CI/CD Pipeline](https://github.com/meghanavalluri02/wisecow-devops-assessment/actions/workflows/cicd.yml/badge.svg)](https://github.com/meghanavalluri02/wisecow-devops-assessment/actions)
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub-wisecow--devops-blue)](https://hub.docker.com/r/meghanavalluri/wisecow-devops)
+[![Docker Hub](https://img.shields.io/badge/Docker%20Hub-wisecow--devops-blue)](https://hub.docker.com/r/meghanavalluri/wisecow-devops/tags)
 
 **Complete implementation of Accuknox DevOps Trainee Assessment - Problem Statement 1**
 
