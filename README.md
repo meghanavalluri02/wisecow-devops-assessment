@@ -77,6 +77,7 @@ kubectl create secret tls wisecow-tls --cert=certs/tls.crt --key=certs/tls.key
 
 ## Problem Statement 2: Python Scripts
 
+<<<<<<< HEAD
 ### System Health Monitor
 - **File:** `scripts/system_health.py`
 - **Monitors:** CPU, memory, disk, processes
@@ -89,6 +90,13 @@ kubectl create secret tls wisecow-tls --cert=certs/tls.crt --key=certs/tls.key
 - **Checks:** Wise Cow HTTP status (UP/DOWN)
 - **Run:** `docker run -p 4499:4499 wisecow:latest` then `python scripts/app_health_checker.py`
 - **Log:** `app_health.log`
+=======
+Evidence
+Pods: 3/3 Running (kubectl get pods -n kube-system | findstr kubearmor) 
+Policy: Applied (kubectl get ksp wisecow-network-audit) 
+Violation: 100% packet loss on ICMP ping
+Legitimate: HTTP port 4499 works normally 
+>>>>>>> ca6601ce367133c23ea556b057c8a2f80a60cb07
 
 ## Problem Statement 3: KubeArmor (Bonus)
 
