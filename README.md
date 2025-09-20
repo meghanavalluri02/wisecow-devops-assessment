@@ -72,3 +72,58 @@ Kubernetes: kubectl get pods (2/2 Running)
 Load Balancing: Refresh http://localhost:8080 10x
 HTTPS: https://localhost:8443 with warning bypass
 
+
+## Problem Statement 2: Python Monitoring Scripts
+
+Implemented 2 objectives in Python for system and application monitoring. Scripts located in `scripts/` folder. Both use `psutil` and `requests` libraries for cross-platform compatibility.
+
+### 1. System Health Monitoring Script (Objective 1)
+- **File:** `scripts/system_health.py`
+- **Description:** Monitors CPU, memory, disk usage, and running processes. Alerts to console and log file if thresholds exceeded (CPU > 80%, Memory > 80%, Disk > 85%, Processes > 500).
+- **Features:** Continuous monitoring (every 60 seconds), logging to `system_health.log`, formatted reports.
+- **Run:** `python scripts/system_health.py`
+- **Test:** Run script; open multiple apps to spike CPU/memory for alerts. Stop with Ctrl+C.
+- **Example Output:**
+
+
+🖥️ System Health Monitor Started...
+System Health Report - 2025-09-20 11:30:25
+CPU: 20.9% (OK)
+🚨 MEMORY ALERT: 83.1% usage (threshold: 80%)
+Disk: 55.4% (211GB free)
+Processes: 368
+
+- **Log:** `system_health.log` records alerts with timestamps.
+
+### 2. Application Health Checker Script (Objective 4)
+- **File:** `scripts/app_health_checker.py`
+- **Description:** Checks HTTP status of Wise Cow app (localhost:4499). Reports UP (status 200) or DOWN (error/timeout/non-200). Includes response time.
+- **Features:** Continuous monitoring (every 30 seconds), logging to `app_health.log`, handles timeouts/connections.
+- **Run:** `python scripts/app_health_checker.py` (start Wise Cow Docker first: `docker run -p 4499:4499 wisecow:latest`)
+- **Test:** Run script with app running (UP); stop Docker for DOWN test. Stop with Ctrl+C.
+- **Example Output (UP):**
+
+🌐 Application Health Monitor Started...
+Application Health Report - 2025-09-20 11:50:15
+✅ Wise Cow Application: UP | Status: 200 | Response: 0.08s
+📊 Health Summary:
+UP: 1/1 applications
+✅ Wise Cow Application: UP
+
+- **Example Output (DOWN):**
+
+🚨 Wise Cow Application: CONNECTION ERROR | URL: http://localhost:4499 unreachable
+📊 Health Summary:
+UP: 0/1 applications
+❌ Wise Cow Application: CONNECTION_ERROR
+
+- **Log:** `app_health.log` records UP/DOWN with timestamps/response times.
+
+### Problem Statement 2 Requirements Mapping
+| Objective | Status | Implementation | Evidence |
+|-----------|--------|----------------|----------|
+| **System Health Monitoring** | ✅ COMPLETE | CPU/memory/disk/processes with alerts | `system_health.py`, console/log output |
+| **Application Health Checker** | ✅ COMPLETE | HTTP status/uptime with error handling | `app_health_checker.py`, UP/DOWN tests |
+
+
+
