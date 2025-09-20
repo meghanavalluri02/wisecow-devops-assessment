@@ -146,15 +146,11 @@ Mode: Audit → Block (demonstrated 100% packet loss)
 Violation Capture
 Trigger: kubectl run test-ping ... -- ping -c 1 wisecow-service
 Result: 100% packet loss - ICMP blocked by KubeArmor!
-<img width="765" height="137" alt="kubearmor-violation" src="https://github.com/user-attachments/assets/fea52df8-01ee-43ed-8ba8-38da10a2102d" />
-
 
 Evidence
 Pods: 3/3 Running (kubectl get pods -n kube-system | findstr kubearmor) 
 Policy: Applied (kubectl get ksp wisecow-network-audit) 
 Violation: 100% packet loss on ICMP ping
-<img width="811" height="87" alt="kubearmor-policy" src="https://github.com/user-attachments/assets/31d46aa5-e455-4c47-822a-b68be6a7d749" />
-
 Legitimate: HTTP port 4499 works normally 
 
 
