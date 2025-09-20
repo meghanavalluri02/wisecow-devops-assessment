@@ -127,3 +127,32 @@ UP: 0/1 applications
 
 
 
+## Problem Statement 3: Zero-Trust KubeArmor Policy (BONUS POINTS!)
+
+**Status:** 🎯 **COMPLETE** | **Security Champion Achievement Unlocked!** 🏆🔒
+
+### Installation
+```bash
+# Helm deployment (v1.10.0)
+helm repo add kubearmor https://kubearmor.github.io/charts
+helm install kubearmor kubearmor/kubearmor --namespace kube-system --create-namespace
+
+Zero-Trust Policy
+File: kubearmor-policy.yaml
+Rule: Block ICMP (ping) traffic to wise cow service; allow TCP 4499
+Target: Pods labeled app: wisecow and service wisecow-service
+Mode: Audit → Block (demonstrated 100% packet loss)
+
+Violation Capture
+Trigger: kubectl run test-ping ... -- ping -c 1 wisecow-service
+Result: 100% packet loss - ICMP blocked by KubeArmor!
+
+
+Evidence
+Pods: 3/3 Running (kubectl get pods -n kube-system | findstr kubearmor) 
+Policy: Applied (kubectl get ksp wisecow-network-audit) 
+Violation: 100% packet loss on ICMP ping 
+Legitimate: HTTP port 4499 works normally 
+
+
+
