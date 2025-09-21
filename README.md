@@ -77,7 +77,7 @@ kubectl create secret tls wisecow-tls --cert=certs/tls.crt --key=certs/tls.key
 
 ## Problem Statement 2: Python Scripts
 
-<<<<<<< HEAD
+
 ### System Health Monitor
 - **File:** `scripts/system_health.py`
 - **Monitors:** CPU, memory, disk, processes
@@ -96,7 +96,7 @@ Pods: 3/3 Running (kubectl get pods -n kube-system | findstr kubearmor)
 Policy: Applied (kubectl get ksp wisecow-network-audit) 
 Violation: 100% packet loss on ICMP ping
 Legitimate: HTTP port 4499 works normally 
->>>>>>> ca6601ce367133c23ea556b057c8a2f80a60cb07
+
 
 ## Problem Statement 3: KubeArmor (Bonus)
 
@@ -105,5 +105,3 @@ Legitimate: HTTP port 4499 works normally
 - **Violation:** Ping blocked (100% packet loss)
 - **Evidence:** Screenshots in repo
 
-*Built for Accuknox DevOps Assessment 2025*  
-*meghanavalluri02 | September 20, 2025*
