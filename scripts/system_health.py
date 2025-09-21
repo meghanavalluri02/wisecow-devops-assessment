@@ -94,8 +94,8 @@ def system_health_report():
 
 def main():
     """Main monitoring loop"""
-    print("🖥️  System Health Monitor Started...")
-    print(f"⏰ Checking every 60 seconds | Logs: system_health.log")
+    print("  System Health Monitor Started...")
+    print(f" Checking every 60 seconds | Logs: system_health.log")
     print(f"⚠️  Thresholds: CPU={THRESHOLDS['cpu']}%, Mem={THRESHOLDS['memory']}%, Disk={THRESHOLDS['disk']}%\n")
     
     try:
@@ -103,7 +103,7 @@ def main():
             system_health_report()
             time.sleep(60)  # Wait 60 seconds
     except KeyboardInterrupt:
-        print("\n👋 System Health Monitor Stopped by User")
+        print("\n System Health Monitor Stopped by User")
         logging.info("System Health Monitor stopped")
 
 if __name__ == "__main__":
