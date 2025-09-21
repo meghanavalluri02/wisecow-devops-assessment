@@ -7,8 +7,8 @@ spec:
   severity: 5
   selector:
     matchLabels:
-      app: wisecow  # Targets your wise cow pods
+      app: wisecow
   network:
     matchProtocols:
-    - protocol: icmp  # Audit ICMP (ping) traffic
-  action: Audit  # Log violations without blocking (safe for testing)
+    - protocol: icmp
+  action: Audit
