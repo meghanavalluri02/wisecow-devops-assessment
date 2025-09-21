@@ -53,28 +53,28 @@ def check_app_health(app_config):
         
         status_code = response.status_code
         if status_code == expected_status:
-            message = f"✅ {app_name}: UP | Status: {status_code} | Response: {response_time:.2f}s"
+            message = f" {app_name}: UP | Status: {status_code} | Response: {response_time:.2f}s"
             logging.info(message)
             print(message)
             return {'status': 'UP', 'response_time': response_time}
         else:
-            message = f"🚨 {app_name}: DOWN | Status: {status_code} (expected {expected_status}) | Response: {response_time:.2f}s"
+            message = f" {app_name}: DOWN | Status: {status_code} (expected {expected_status}) | Response: {response_time:.2f}s"
             logging.error(message)
             print(message)
             return {'status': 'DOWN', 'status_code': status_code, 'response_time': response_time}
             
     except requests.exceptions.Timeout:
-        message = f"🚨 {app_name}: TIMEOUT | URL: {url} | Timeout: {timeout}s"
+        message = f" {app_name}: TIMEOUT | URL: {url} | Timeout: {timeout}s"
         logging.error(message)
         print(message)
         return {'status': 'TIMEOUT', 'response_time': timeout}
     except requests.exceptions.ConnectionError:
-        message = f"🚨 {app_name}: CONNECTION ERROR | URL: {url} unreachable"
+        message = f" {app_name}: CONNECTION ERROR | URL: {url} unreachable"
         logging.error(message)
         print(message)
         return {'status': 'CONNECTION_ERROR'}
     except Exception as e:
-        message = f"🚨 {app_name}: UNKNOWN ERROR | {str(e)}"
+        message = f" {app_name}: UNKNOWN ERROR | {str(e)}"
         logging.error(message)
         print(message)
         return {'status': 'ERROR', 'error': str(e)}
@@ -91,7 +91,7 @@ def health_report():
         results[app['name']] = result
     
     # Summary
-    print(f"\n📊 Health Summary:")
+    print(f"\n Health Summary:")
     up_count = sum(1 for r in results.values() if r['status'] == 'UP')
     total_count = len(results)
     print(f"   UP: {up_count}/{total_count} applications")
@@ -99,25 +99,25 @@ def health_report():
     for app_name, result in results.items():
         status = result['status']
         if status == 'UP':
-            print(f"   ✅ {app_name}: {status}")
+            print(f"    {app_name}: {status}")
         else:
-            print(f"   ❌ {app_name}: {status}")
+            print(f"    {app_name}: {status}")
     
     print(f"{'='*60}\n")
     return results
 
 def main():
     """Main monitoring loop"""
-    print("🌐 Application Health Monitor Started...")
-    print(f"⏰ Checking every {CHECK_INTERVAL} seconds | Logs: app_health.log")
-    print(f"📱 Monitoring: {', '.join([app['name'] for app in APPS])}\n")
+    print(" Application Health Monitor Started...")
+    print(f" Checking every {CHECK_INTERVAL} seconds | Logs: app_health.log")
+    print(f" Monitoring: {', '.join([app['name'] for app in APPS])}\n")
     
     try:
         while True:
             health_report()
             time.sleep(CHECK_INTERVAL)
     except KeyboardInterrupt:
-        print(f"\n👋 Application Health Monitor Stopped by User")
+        print(f"\n Application Health Monitor Stopped by User")
         logging.info("Application Health Monitor stopped")
 
 if __name__ == "__main__":
