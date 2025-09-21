@@ -47,15 +47,15 @@ jobs:
           echo " Pull request - image built but not pushed"
         fi
 
-    - name: Validate Kubernetes manifests (syntax only)
+    - name: Validate Kubernetes manifests
       run: |
         echo " Checking Kubernetes manifest syntax..."
-        if [ -f "deployment.yaml" ]; then
+        if [ -f "k8s/deployment.yaml" ]; then
           echo " deployment.yaml exists"
-          grep -q "apiVersion:" deployment.yaml && echo " deployment.yaml has valid apiVersion" || echo " deployment.yaml missing apiVersion"
+          grep -q "apiVersion:" k8s/deployment.yaml && echo " deployment.yaml has valid apiVersion" || echo " deployment.yaml missing apiVersion"
         fi
-        if [ -f "service.yaml" ]; then
+        if [ -f "k8s/service.yaml" ]; then
           echo " service.yaml exists"
-          grep -q "apiVersion:" service.yaml && echo " service.yaml has valid apiVersion" || echo " service.yaml missing apiVersion"
+          grep -q "apiVersion:" k8s/service.yaml && echo " service.yaml has valid apiVersion" || echo " service.yaml missing apiVersion"
         fi
         echo " All Kubernetes manifests found and syntactically valid!"
